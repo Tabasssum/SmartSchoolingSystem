@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registration</ion-title>
+    <ion-menu-button slot="start"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="name" placeholder="Enter username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="email" placeholder="Enter email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="phone" placeholder="Enter phone number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="selctCate" placeholder="Select user">
+        <ion-select-option value="admin">Admin</ion-select-option>
+        <ion-select-option value="teacher">Teacher</ion-select-option>
+        <ion-select-option value="parent">Parent</ion-select-option>
+        <ion-select-option value="canteen">Canteen</ion-select-option>
+        <ion-select-option value="student">Student</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" [(ngModel)]="pass" placeholder="Enter password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button>Submit</ion-button>
+</ion-content>
