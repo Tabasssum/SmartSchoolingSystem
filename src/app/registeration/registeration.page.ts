@@ -1,97 +1,86 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { timeStamp } from 'console';
+import { ForAllRegisterService } from '../register/for-all-register.service';
+import { ForStuRegistService } from '../register/for-stu-regist.service';
 
-interface Classes {
-  classId: number;
-  className: string;
-
+interface Users {
+  userId: number;
+  userName: string;
 }
-
+@Injectable({
+  providedIn: 'any'
+})
 @Component({
   selector: 'app-registeration',
   templateUrl: './registeration.page.html',
   styleUrls: ['./registeration.page.scss'],
 })
 export class RegisterationPage implements OnInit {
-  selctClass: string;
-  selctUsr: string;
   name: string;
-  id: number;
+  Sid: string;
   age: number;
   fname: string;
   fid: number;
   email: string;
+  id: number;
   phone: number;
   pass: string;
   cpass: string;
-  forAll: boolean = false;
-  forStu: boolean = false;
-  class: Classes[] = [
-    {
-      classId: 1,
-      className: "class-1"
-    },
-    {
-      classId: 2,
-      className: "class-2"
-    },
-    {
-      classId: 3,
-      className: "class-3"
-    },
-    {
-      classId: 4,
-      className: "class-4"
-    },
-    {
-      classId: 5,
-      className: "class-5"
-    },
-    {
-      classId: 6,
-      className: "class-6"
-    },
-    {
-      classId: 7,
-      className: "class-7"
-    },
-    {
-      classId: 8,
-      className: "class-8"
-    },
-    {
-      classId: 9,
-      className: "class-9"
-    },
-    {
-      classId: 10,
-      className: "class-10"
-    }
-  ];
+  public qrData: string;
+  selctUsr: string;
+  user: Users[] = [{ userId: 1, userName: "admin" }, { userId: 2, userName: "teacher" }, { userId: 3, userName: "parent" }, { userId: 4, userName: "canteen" }, { userId: 5, userName: "student" }];
+  class: number;
 
-  constructor() { }
+  constructor(
+    public router: Router,
+    public forStuRegSer:ForStuRegistService,
+    public forAllRegSer:ForAllRegisterService
+    ){ }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   userSelect() {
-    if (this.selctUsr === 'student') {
-      this.forStu = true;
-      this.forAll = false;
+    if (this.selctUsr === '5') {
+      document.getElementById('forStu').style.display = 'block';
+      this.setNameForStudent();
+      document.getElementById('forAll').style.display = 'none';
     }
     else {
-      this.forAll = true;
-      this.forStu = false;
+      document.getElementById('forAll').style.display = 'block';
+      document.getElementById('forStu').style.display = 'none';
     }
   }
 
-  // confirmPass(x){
-  //   var c = document.getElementById('cnfrm').style.backgroundColor = 'green';
-  //   var d = document.getElementById('cnfrm').style.backgroundColor = 'red';
-  //   if(this.cpass !== this.pass){
-  //     x.value = d;
-  //   }
-  //   else{
-  //     x.value = c;
-  //   }
-  // }
+  generateQRCode() {
+      var combine = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+=-\\|}]{[';:\"/?.>,<~`0123456789";
+      var stringLength = combine.length;
+      var result = '';
+      for (var i = 0; i < 15; i++) {
+        result += combine.charAt(Math.floor(Math.random() * stringLength));
+      }
+      this.qrData = result + this.forStuRegSer.getSid();
+  }
 
+  generatCard(){
+    this.userSelect();
+    this.router.navigateByUrl('/generate-card');
+  }
+
+  setNameForStudent(){
+    this.forStuRegSer.setSid(this.Sid);
+    this.forStuRegSer.setName(this.name);
+    this.forStuRegSer.setAge(this.age);
+    this.forStuRegSer.setFname(this.fname);
+    this.forStuRegSer.setFid(this.fid);
+    this.forStuRegSer.setClass(this.class);
+  }
+
+  setNameForAll(){
+    this.forAllRegSer.setName(this.name);
+    this.forAllRegSer.setId(this.id);
+    this.forAllRegSer.setPhone(this.phone);
+    this.forAllRegSer.setEmail(this.email);
+    this.forAllRegSer.setPass(this.pass);
+  }
 }

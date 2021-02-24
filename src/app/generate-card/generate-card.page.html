@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>generateCard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-label class="forHeading">Smart Schooling Sysytem</ion-label>
+      <ion-avatar>
+        <img src="" alt="" />
+      </ion-avatar>
+      <ion-label class="forLabel">{{Sname}}</ion-label><br>
+      <ion-label class="forLabel">({{Sid}})</ion-label>
+      <ion-list>
+        <ion-item>
+          <ion-label fixed class="forLabel">Father:</ion-label>
+          <ion-label>{{fname}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed class="forLabel">Age:</ion-label>
+          <ion-label>{{age}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed class="forLabel">Class:</ion-label>
+          <ion-label>{{class}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ngx-qrcode [value]="qrCode"></ngx-qrcode>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full">Print</ion-button>
+</ion-content>

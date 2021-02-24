@@ -1,0 +1,34 @@
+ion-card{
+    height: 440px;
+    width: 260px;
+    margin: 5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.forHeading{
+    font-weight: bold;
+    color: black;
+    border-bottom: 1px solid gainsboro;
+}
+
+.forLabel{
+    font-weight: bold;
+    color: black;
+}
+
+ion-label{
+    text-align: left;
+}
+
+ion-avatar{
+    margin-left: 70px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+}
+
+ion-button{
+    padding: 5px;
+    margin: 10px;
+}

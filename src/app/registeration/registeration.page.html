@@ -9,20 +9,16 @@
   <ion-list>
     <ion-item>
       <ion-select [(ngModel)]="selctUsr" placeholder="Select user" (focus)="userSelect()">
-        <ion-select-option value="admin">Admin</ion-select-option>
-        <ion-select-option value="teacher">Teacher</ion-select-option>
-        <ion-select-option value="parent">Parent</ion-select-option>
-        <ion-select-option value="canteen">Canteen</ion-select-option>
-        <ion-select-option value="student">Student</ion-select-option>
+        <ion-select-option *ngFor="let u of user" value="{{u.userId}}">{{u.userName}}</ion-select-option>
       </ion-select>
     </ion-item>
 
-    <ion-list *ngIf="forStu">
+    <ion-list id="forStu">
       <ion-item>
         <ion-input type="text" [(ngModel)]="name" placeholder="Enter username"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="id" placeholder="Enter Id"></ion-input>
+        <ion-input type="text" [(ngModel)]="Sid" placeholder="Enter SId"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="text" [(ngModel)]="age" placeholder="Enter age"></ion-input>
@@ -34,13 +30,11 @@
         <ion-input type="text" [(ngModel)]="fid" placeholder="Enter Father Id"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-select [(ngModel)]="selctClass" placeholder="Select class">
-          <ion-select-option *ngFor="let c of class" value="{{c.classId}}">{{c.className}}</ion-select-option>
-        </ion-select>
+        <ion-input type="text" [(ngModel)]="class" placeholder="Enter Class"></ion-input>
       </ion-item>
     </ion-list>
 
-    <ion-list *ngIf="forAll">
+    <ion-list id="forAll">
       <ion-item>
         <ion-input type="text" [(ngModel)]="name" placeholder="Enter username"></ion-input>
       </ion-item>
@@ -61,5 +55,7 @@
       </ion-item>
     </ion-list>
   </ion-list>
-  <ion-button>Submit</ion-button>
+  <ion-button (click)="generatCard()">Submit</ion-button>
+  <!-- <ngx-qrcode [value]="qrData"></ngx-qrcode>
+  <ion-label>view result: {{qrData}}</ion-label> -->
 </ion-content>

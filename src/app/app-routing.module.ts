@@ -62,6 +62,10 @@ const routes: Routes = [
   {
     path: 'scanner-page',
     loadChildren: () => import('./scanner-page/scanner-page.module').then( m => m.ScannerPagePageModule)
+  },
+  {
+    path: 'generate-card',
+    loadChildren: () => import('./generate-card/generate-card.module').then( m => m.GenerateCardPageModule)
   }
 ];
 

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
+
+interface Users {
+  userId: number;
+  userName: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -31,30 +36,40 @@ export class LoginPage implements OnInit {
     { title: 'Edit Profile', url: '/editprofile', icon: 'create' },
     { title: 'Uploads', url: '/upload-pages', icon: 'cloud-upload' }
   ];
-  constructor(public route: Router, public alrtCtrl:AlertController, public appComp: AppComponent) { }
+  user: Users[] = [{userId:1,userName:'admin'},{userId: 2,userName: "teacher"},{userId: 3,userName: "parent"},{userId: 4,userName: "canteen"}];
+
+  constructor(
+    public route: Router, 
+    public alrtCtrl:AlertController,
+    public mnuCtrl:MenuController, 
+    public appComp: AppComponent) { }
 
   ngOnInit() {
   
   }
 
   login(){
-    if((this.name === 'admin' && this.pass === 'admin')&&(this.slctCate == 'admin')){
+    if((this.name === 'admin' && this.pass === 'admin')&&(this.slctCate == '1')){
       this.route.navigateByUrl('/admin');
+      this.mnuCtrl.enable(true);
       this.appComp.appPages = this.adminPage;
       this.appComp.username = this.name;
     }
-    else if((this.name === 'teacher' && this.pass === 'teacher')&&(this.slctCate == 'teacher')){
+    else if((this.name === 'teacher' && this.pass === 'teacher')&&(this.slctCate == '2')){
       this.route.navigateByUrl('/teacher');
+      this.mnuCtrl.enable(true);
       this.appComp.appPages = this.teacherPage;
       this.appComp.username = this.name;
     }
-    else if((this.name === 'parent' && this.pass === 'parent')&&(this.slctCate == 'parent')){
+    else if((this.name === 'parent' && this.pass === 'parent')&&(this.slctCate == '3')){
       this.route.navigateByUrl('/parent');
+      this.mnuCtrl.enable(true);
       this.appComp.appPages = this.parentPage;
       this.appComp.username = this.name;
     }
-    else if((this.name === 'canteen' && this.pass === 'canteen')&&(this.slctCate == 'canteen')){
+    else if((this.name === 'canteen' && this.pass === 'canteen')&&(this.slctCate == '4')){
       this.route.navigateByUrl('/canteen');
+      this.mnuCtrl.enable(true);
       this.appComp.appPages = this.canteenPage;
       this.appComp.username = this.name;
     }

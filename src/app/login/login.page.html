@@ -18,10 +18,7 @@
       <ion-item>
         <ion-label>User: </ion-label>
         <ion-select [(ngModel)]="slctCate">
-          <ion-select-option value="admin">Admin</ion-select-option>
-          <ion-select-option value="teacher">Teacher</ion-select-option>
-          <ion-select-option value="parent">Parent</ion-select-option>
-          <ion-select-option value="canteen">Canteen</ion-select-option>
+          <ion-select-option *ngFor="let u of user" value="{{u.userId}}">{{u.userName}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
