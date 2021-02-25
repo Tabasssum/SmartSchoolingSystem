@@ -8,7 +8,7 @@ import { RegisterationPage } from '../registeration/registeration.page';
   styleUrls: ['./generate-card.page.scss'],
 })
 export class GenerateCardPage implements OnInit{
-  qrCode: String;
+  qrCode: String ;
   Sname: string = this.forStuRegSer.getName(); 
   Sid: string = this.forStuRegSer.getSid();
   age: number = this.forStuRegSer.getAge();

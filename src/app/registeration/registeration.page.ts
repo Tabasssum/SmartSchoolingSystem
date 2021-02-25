@@ -1,6 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { timeStamp } from 'console';
 import { ForAllRegisterService } from '../register/for-all-register.service';
 import { ForStuRegistService } from '../register/for-stu-regist.service';
 
